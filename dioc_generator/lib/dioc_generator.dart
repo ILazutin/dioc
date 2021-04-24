@@ -136,7 +136,7 @@ class BootstrapperGenerator extends Generator {
     var modeIndex = injectAnnotation?.getField("mode")?.getField("index")?.toIntValue() ?? 0;
     var mode = modeIndex == 0 ? "get" : InjectMode.values[modeIndex].toString().substring(11);
 
-    return (c.parameterKind == ParameterKind.NAMED ? c.name + ": " : "") +
+    return (c.isOptionalNamed ? c.name + ": " : "") +
         "c.$mode<${c.type.name}>($name$creator)";
   }
 
